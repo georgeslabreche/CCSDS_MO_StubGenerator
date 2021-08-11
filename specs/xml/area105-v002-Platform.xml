@@ -6,7 +6,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" comment="">
   <mal:area
     comment="The Platform set of services contains services for monitoring and control of devices on-board of a spacecraft platform. The following services are contained in the Platform services set:&#10;The Camera service allows a consumer to take and stream pictures.&#10;The GNSS service allows a consumer to retrieve satellite navigation data.&#10;The Autonomous ADCS service allows a consumer to determine the attitude, and additionally to control the attitude by selecting the desired definition.&#10;The Software-defined Radio service allows a consumer to configure and receive a stream of data from a Software-defined Radio.&#10;The Optical Data Receiver service allows a consumer to stream data from the Optical Data Receiver.&#10;The Power Control service allows a consumer to control the power of the different subsystems.&#10;&#10;This section details the Platform services. The area and structures are defined in terms of the MO Message Abstraction Layer (MAL), so it is possible to deploy them over any supported protocol and message transport."
-    name="PF" number="105" version="2">
+    name="Platform" number="105" version="2">
     <mal:service
       comment="The Camera service allows a consumer to acquire pictures and control a camera in the spacecraft platform. The service can perform format conversions in case the consumer selects a specific format other than raw. The service can also stream pictures periodically."
       name="Camera" number="1" xsi:type="com:ExtendedServiceType">
@@ -36,7 +36,7 @@
               <mal:field canBeNull="true"
                          comment="The picture in streaming mode.&#10;The MAL EntityKey.firstSubKey shall be the value provided by the consumer during the enableStream operation.&#10;The MAL EntityKey.secondSubKey shall hold a unique object instance identifier.&#10;The MAL EntityKey.thirdSubKey shall hold the width value of the resolution object provided by the consumer during the enableStream operation.&#10;The MAL EntityKey.fourthSubKey shall hold the height value of the resolution object provided by the consumer during the enableStream operation.&#10;The timestamp of the update shall be the time of when the picture was taken."
                          name="picture">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="Picture" service="Camera" />
               </mal:field>
             </mal:publishNotify>
@@ -67,7 +67,7 @@
               </mal:field>
               <mal:field canBeNull="true"
                          comment="Image acquisition settings." name="settings">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="CameraSettings" service="Camera" />
               </mal:field>
             </mal:submit>
@@ -75,12 +75,12 @@
           <mal:errors>
             <mal:errorRef
               comment="The Camera is currently being used. Use the enableStream(false, ...) operation in order to manually stop the streaming and try again.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_IN_USE" />
             </mal:errorRef>
             <mal:errorRef
               comment="The Camera unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
             <mal:errorRef
@@ -97,7 +97,7 @@
               <mal:type area="COM" list="false" name="INVALID" />
               <mal:extraInformation
                 comment="The extra information field shall hold the list of available resolutions.">
-                <mal:type area="PF" list="true"
+                <mal:type area="Platform" list="true"
                           name="PixelResolution" service="Camera" />
               </mal:extraInformation>
             </mal:errorRef>
@@ -106,7 +106,7 @@
               <mal:type area="COM" list="false" name="INVALID" />
               <mal:extraInformation
                 comment="The extra information field shall hold the list of available formats.">
-                <mal:type area="PF" list="true"
+                <mal:type area="Platform" list="true"
                           name="PictureFormat" service="Camera" />
               </mal:extraInformation>
             </mal:errorRef>
@@ -127,7 +127,7 @@
               <mal:field canBeNull="true"
                          comment="The picture field shall hold the picture preview."
                          name="picture">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="Picture" service="Camera" />
               </mal:field>
             </mal:response>
@@ -135,7 +135,7 @@
           <mal:errors>
             <mal:errorRef
               comment="The Camera unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
           </mal:errors>
@@ -149,7 +149,7 @@
             <mal:invoke comment="">
               <mal:field canBeNull="true"
                          comment="Picture acquisition settings." name="settings">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="CameraSettings" service="Camera" />
               </mal:field>
             </mal:invoke>
@@ -158,7 +158,7 @@
               <mal:field canBeNull="true"
                          comment="The picture field shall hold the picture."
                          name="picture">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="Picture" service="Camera" />
               </mal:field>
             </mal:response>
@@ -166,12 +166,12 @@
           <mal:errors>
             <mal:errorRef
               comment="The Camera is currently being used. Use the enableStream(false, ...)) operation in order stop the streaming and try again.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_IN_USE" />
             </mal:errorRef>
             <mal:errorRef
               comment="The Camera unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
             <mal:errorRef
@@ -179,7 +179,7 @@
               <mal:type area="COM" list="false" name="INVALID" />
               <mal:extraInformation
                 comment="The extra information field shall hold the list of available resolutions.">
-                <mal:type area="PF" list="true"
+                <mal:type area="Platform" list="true"
                           name="PixelResolution" service="Camera" />
               </mal:extraInformation>
             </mal:errorRef>
@@ -188,7 +188,7 @@
               <mal:type area="COM" list="false" name="INVALID" />
               <mal:extraInformation
                 comment="The extra information field shall hold the list of available formats.">
-                <mal:type area="PF" list="true"
+                <mal:type area="Platform" list="true"
                           name="PictureFormat" service="Camera" />
               </mal:extraInformation>
             </mal:errorRef>
@@ -203,7 +203,7 @@
             <mal:invoke comment="">
               <mal:field canBeNull="true"
                          comment="Picture acquisition settings." name="settings">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="CameraSettings" service="Camera" />
               </mal:field>
             </mal:invoke>
@@ -212,7 +212,7 @@
               <mal:field canBeNull="true"
                          comment="The picture field shall hold the picture."
                          name="picture">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="Picture" service="Camera" />
               </mal:field>
             </mal:response>
@@ -220,12 +220,12 @@
           <mal:errors>
             <mal:errorRef
               comment="The Camera is currently being used. Use the enableStream(false, ...)) operation in order stop the streaming and try again.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_IN_USE" />
             </mal:errorRef>
             <mal:errorRef
               comment="The Camera unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
             <mal:errorRef
@@ -233,7 +233,7 @@
               <mal:type area="COM" list="false" name="INVALID" />
               <mal:extraInformation
                 comment="The extra information field shall hold the list of available resolutions.">
-                <mal:type area="PF" list="true"
+                <mal:type area="Platform" list="true"
                           name="PixelResolution" service="Camera" />
               </mal:extraInformation>
             </mal:errorRef>
@@ -242,7 +242,7 @@
               <mal:type area="COM" list="false" name="INVALID" />
               <mal:extraInformation
                 comment="The extra information field shall hold the list of available formats.">
-                <mal:type area="PF" list="true"
+                <mal:type area="Platform" list="true"
                           name="PictureFormat" service="Camera" />
               </mal:extraInformation>
             </mal:errorRef>
@@ -259,13 +259,13 @@
               <mal:field canBeNull="true"
                          comment="The availableResolutions field shall hold the list of the available resolutions by the camera."
                          name="availableResolutions">
-                <mal:type area="PF" list="true"
+                <mal:type area="Platform" list="true"
                           name="PixelResolution" service="Camera" />
               </mal:field>
               <mal:field canBeNull="true"
                          comment="The availableFormats field shall hold a list of available formats by the service."
                          name="availableFormats">
-                <mal:type area="PF" list="true"
+                <mal:type area="Platform" list="true"
                           name="PictureFormat" service="Camera" />
               </mal:field>
               <mal:field canBeNull="true"
@@ -291,7 +291,7 @@
           <mal:field canBeNull="false"
                      comment="Acquisition settings used to take the picture."
                      name="settings">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="CameraSettings" service="Camera" />
           </mal:field>
           <mal:field canBeNull="false"
@@ -335,13 +335,13 @@
           <mal:field canBeNull="false"
                      comment="The resolution field shall hold the desired picture resolution."
                      name="resolution">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="PixelResolution" service="Camera" />
           </mal:field>
           <mal:field canBeNull="false"
                      comment="The format field shall hold the desired streaming picture format."
                      name="format">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="PictureFormat" service="Camera" />
           </mal:field>
           <mal:field canBeNull="false"
@@ -417,7 +417,7 @@
             </mal:errorRef>
             <mal:errorRef
               comment="The GPS unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
           </mal:errors>
@@ -434,7 +434,7 @@
               <mal:field canBeNull="true"
                          comment="The position field shall hold the last known position."
                          name="position">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="Position" service="GPS" />
               </mal:field>
               <mal:field canBeNull="true"
@@ -465,7 +465,7 @@
               <mal:field canBeNull="true"
                          comment="The position field shall hold the current position."
                          name="position">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="Position" service="GPS" />
               </mal:field>
             </mal:response>
@@ -473,7 +473,7 @@
           <mal:errors>
             <mal:errorRef
               comment="The GPS unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
             <mal:errorRef
@@ -494,7 +494,7 @@
               <mal:field canBeNull="true"
                          comment="The gpsSatellitesInfo field shall hold the information of the satellites."
                          name="gpsSatellitesInfo">
-                <mal:type area="PF" list="true"
+                <mal:type area="Platform" list="true"
                           name="SatelliteInfo" service="GPS" />
               </mal:field>
             </mal:response>
@@ -502,7 +502,7 @@
           <mal:errors>
             <mal:errorRef
               comment="The GPS unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
           </mal:errors>
@@ -540,7 +540,7 @@
               <mal:field canBeNull="true"
                          comment="The nearbyPosition field shall hold the definition of a position."
                          name="nearbyPositionDefinitions">
-                <mal:type area="PF" list="true"
+                <mal:type area="Platform" list="true"
                           name="NearbyPositionDefinition" service="GPS" />
               </mal:field>
             </mal:request>
@@ -633,7 +633,7 @@
           <mal:errors>
             <mal:errorRef
               comment="The GPS unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
           </mal:errors>
@@ -657,7 +657,7 @@
           <mal:errors>
             <mal:errorRef
               comment="The GPS unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
           </mal:errors>
@@ -674,25 +674,25 @@
               <mal:field canBeNull="true"
                          comment="The position field shall hold the last known position."
                          name="position">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="VectorD3D"/>
               </mal:field>
               <mal:field canBeNull="true"
                          comment="The positionDeviation field shall hold the last known standard deviations of the position."
                          name="positionDeviation">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="VectorF3D"/>
               </mal:field>
               <mal:field canBeNull="true"
                          comment="The velocity field shall hold the last known velocity."
                          name="velocity">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="VectorD3D"/>
               </mal:field>
               <mal:field canBeNull="true"
                          comment="The velocityDeviation field shall hold the last known standard deviations of the velocity."
                          name="velocityDeviation">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="VectorF3D"/>
               </mal:field>
               <mal:field canBeNull="true"
@@ -723,25 +723,25 @@
               <mal:field canBeNull="true"
                          comment="The position field shall hold the last known position."
                          name="position">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="VectorD3D"/>
               </mal:field>
               <mal:field canBeNull="true"
                          comment="The positionDeviation field shall hold the last known standard deviations of the position."
                          name="positionDeviation">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="VectorF3D"/>
               </mal:field>
               <mal:field canBeNull="true"
                          comment="The velocity field shall hold the last known velocity."
                          name="velocity">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="VectorD3D"/>
               </mal:field>
               <mal:field canBeNull="true"
                          comment="The velocityDeviation field shall hold the last known standard deviations of the velocity."
                          name="velocityDeviation">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="VectorF3D"/>
               </mal:field>
             </mal:response>
@@ -749,7 +749,7 @@
           <mal:errors>
             <mal:errorRef
               comment="The GPS unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
             <mal:errorRef
@@ -771,7 +771,7 @@
               <mal:field canBeNull="true"
                          comment="The tle field shall hold the curent TLE."
                          name="tle">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="TwoLineElementSet" service="GPS" />
               </mal:field>
             </mal:response>
@@ -779,7 +779,7 @@
           <mal:errors>
             <mal:errorRef
               comment="The GPS unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
             <mal:errorRef
@@ -814,7 +814,7 @@
           <mal:field canBeNull="true"
                      comment="Extra details about the position."
                      name="extraDetails">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="PositionExtraDetails" service="GPS" />
           </mal:field>
         </mal:composite>
@@ -906,7 +906,7 @@
           </mal:field>
           <mal:field canBeNull="true"
                      comment="The position of the definition." name="position">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="Position" service="GPS" />
           </mal:field>
         </mal:composite>
@@ -1107,7 +1107,7 @@
             comment="The positions markers for the events shall be represented as NearbyPosition COM objects. "
             name="NearbyPosition" number="1">
             <com:objectType>
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="NearbyPositionDefinition" service="GPS" />
             </com:objectType>
             <com:relatedObject comment="" />
@@ -1122,7 +1122,7 @@
               <mal:type area="MAL" list="false" name="Boolean" />
             </com:objectType>
             <com:relatedObject comment="">
-              <com:objectType area="PF" number="1"
+              <com:objectType area="Platform" number="1"
                               service="GPS" />
             </com:relatedObject>
             <com:sourceObject comment="" />
@@ -1156,13 +1156,13 @@
               <mal:field canBeNull="true"
                          comment="Determined spacecraft attitude."
                          name="attitudeTelemetry">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="AttitudeTelemetry" service="AutonomousADCS" />
               </mal:field>
               <mal:field canBeNull="true"
                          comment="Status of the ADCS actuators."
                          name="actuatorsTelemetry">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="ActuatorsTelemetry" service="AutonomousADCS" />
               </mal:field>
               <mal:field canBeNull="true"
@@ -1174,7 +1174,7 @@
               <mal:field canBeNull="true"
                          comment="Active attitude mode. NULL if no attitude control is active. This is an abstract type."
                          name="activeAttitudeMode">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="AttitudeMode" service="AutonomousADCS" />
               </mal:field>
             </mal:publishNotify>
@@ -1223,13 +1223,13 @@
               <mal:field canBeNull="true"
                          comment="Determined spacecraft attitude."
                          name="attitudeTelemetry">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="AttitudeTelemetry" service="AutonomousADCS" />
               </mal:field>
               <mal:field canBeNull="true"
                          comment="Status of the ADCS actuators."
                          name="actuatorsTelemetry">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="ActuatorsTelemetry" service="AutonomousADCS" />
               </mal:field>
               <mal:field canBeNull="true"
@@ -1253,7 +1253,7 @@
               <mal:field canBeNull="true"
                          comment="Active attitude mode. NULL if no attitude control is active. This is an abstract type."
                          name="activeAttitudeMode">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="AttitudeMode" service="AutonomousADCS" />
               </mal:field>
             </mal:response>
@@ -1261,7 +1261,7 @@
           <mal:errors>
             <mal:errorRef
               comment="The ADCS unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
           </mal:errors>
@@ -1282,7 +1282,7 @@
               <mal:field canBeNull="true"
                          comment="Desired attitude mode. If set to NULL, ADCS will switch into a free tumbling mode. This is an abstract type."
                          name="desiredAttitude">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="AttitudeMode" service="AutonomousADCS" />
               </mal:field>
             </mal:submit>
@@ -1290,7 +1290,7 @@
           <mal:errors>
             <mal:errorRef
               comment="The ADCS unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
             <mal:errorRef
@@ -1303,7 +1303,7 @@
             </mal:errorRef>
             <mal:errorRef
               comment="The ADCS is currently being used.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_IN_USE" />
               <mal:extraInformation
                 comment="The service will disengage the current selected attitude control mode in the duration provided in the extra information field. If the extra information field is set to NULL, then the attitude control mode will not be automatically unset. The consumer should use the setDesiredAttitude operation again to disengage it.">
@@ -1328,7 +1328,7 @@
               <mal:field canBeNull="false"
                          comment="The Reaction wheel indentifier."
                          name="wheel">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="ReactionWheelIdentifier" service="AutonomousADCS" />
               </mal:field>
               <mal:field canBeNull="false"
@@ -1342,7 +1342,7 @@
           <mal:errors>
             <mal:errorRef
               comment="The ADCS unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
           </mal:errors>
@@ -1395,7 +1395,7 @@
           <mal:errors>
             <mal:errorRef
               comment="The ADCS unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
           </mal:errors>
@@ -1409,7 +1409,7 @@
             <mal:submit comment="">
               <mal:field canBeNull="false"
                          comment="Reaction wheel parameters" name="parameters">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="ReactionWheelParameters" service="AutonomousADCS" />
               </mal:field>
             </mal:submit>
@@ -1417,7 +1417,7 @@
           <mal:errors>
             <mal:errorRef
               comment="The ADCS unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
           </mal:errors>
@@ -1452,7 +1452,7 @@
           <mal:errors>
             <mal:errorRef
               comment="The ADCS unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
           </mal:errors>
@@ -1466,7 +1466,7 @@
             <mal:response comment="">
               <mal:field canBeNull="false"
                          comment="Reaction wheel parameters" name="parameters">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="ReactionWheelParameters" service="AutonomousADCS" />
               </mal:field>
             </mal:response>
@@ -1474,7 +1474,7 @@
           <mal:errors>
             <mal:errorRef
               comment="The ADCS unit is not available.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
           </mal:errors>
@@ -1515,7 +1515,7 @@
           comment="B-dot detumbling attitude mode defined by the consumer."
           name="AttitudeModeBDot" shortFormPart="3">
           <mal:extends>
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="AttitudeMode" service="AutonomousADCS" />
           </mal:extends>
         </mal:composite>
@@ -1523,13 +1523,13 @@
           comment="Single-axis spinning attitude mode defined by the consumer."
           name="AttitudeModeSingleSpinning" shortFormPart="4">
           <mal:extends>
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="AttitudeMode" service="AutonomousADCS" />
           </mal:extends>
           <mal:field canBeNull="false"
                      comment="The spin axis vector, defined in the body reference frame."
                      name="bodyAxis">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="VectorF3D"/>
           </mal:field>
           <mal:field canBeNull="false"
@@ -1542,7 +1542,7 @@
           comment="Sun Pointing attitude mode defined by the consumer."
           name="AttitudeModeSunPointing" shortFormPart="5">
           <mal:extends>
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="AttitudeMode" service="AutonomousADCS" />
           </mal:extends>
         </mal:composite>
@@ -1550,7 +1550,7 @@
           comment="Fixed Ground Target Tracking attitude mode defined by the consumer."
           name="AttitudeModeTargetTracking" shortFormPart="6">
           <mal:extends>
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="AttitudeMode" service="AutonomousADCS" />
           </mal:extends>
           <mal:field canBeNull="false"
@@ -1568,7 +1568,7 @@
           comment="Constant velocity Ground Target Tracking attitude mode defined by the consumer."
           name="AttitudeModeTargetTrackingLinear" shortFormPart="12">
           <mal:extends>
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="AttitudeMode" service="AutonomousADCS" />
           </mal:extends>
           <mal:field canBeNull="false"
@@ -1606,7 +1606,7 @@
           comment="Nadir Pointing attitude mode defined by the consumer."
           name="AttitudeModeNadirPointing" shortFormPart="7">
           <mal:extends>
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="AttitudeMode" service="AutonomousADCS" />
           </mal:extends>
         </mal:composite>
@@ -1614,13 +1614,13 @@
           comment="Vector Pointing attitude mode defined by the consumer."
           name="AttitudeModeVectorPointing" shortFormPart="12">
           <mal:extends>
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="AttitudeMode" service="AutonomousADCS" />
           </mal:extends>
           <mal:field canBeNull="false"
                      comment="Vector the Satelite should point the camera at (in ICRF)"
                      name="target">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="VectorF3D"/>
           </mal:field>
           <mal:field canBeNull="false"
@@ -1650,25 +1650,25 @@
           <mal:field canBeNull="false"
                      comment="Target reaction wheels speed."
                      name="targetWheelSpeed">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="WheelsSpeed" service="AutonomousADCS" />
           </mal:field>
           <mal:field canBeNull="false"
                      comment="Current reaction wheels speed."
                      name="currentWheelSpeed">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="WheelsSpeed" service="AutonomousADCS" />
           </mal:field>
           <mal:field canBeNull="false"
                      comment="Target magnetorquers dipole moment relative to the spacecraft frame. [A*m^2]"
                      name="mtqDipoleMoment">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="VectorF3D"/>
           </mal:field>
           <mal:field canBeNull="false"
                      comment="Current state of the magnetorquers."
                      name="mtqState">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="MagnetorquersState" service="AutonomousADCS" />
           </mal:field>
         </mal:composite>
@@ -1681,25 +1681,25 @@
           <mal:field canBeNull="false"
                      comment="Calculated attitude quaternion of the spacecraft frame relative to International Celestial Reference Frame (ICRF)."
                      name="attitude">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="Quaternion" service="AutonomousADCS" />
           </mal:field>
           <mal:field canBeNull="false"
                      comment="Calculated angular velocity vector (x,y,z) relative to the spacecraft frame. [rad/sec]"
                      name="angularVelocity">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="VectorF3D"/>
           </mal:field>
           <mal:field canBeNull="false"
                      comment="Calculated dimensionless sun vector (x,y,z) relative to the spacecraft frame."
                      name="sunVector">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="VectorF3D"/>
           </mal:field>
           <mal:field canBeNull="false"
                      comment="Calculated magnetic flux density relative to the spacecraft frame. [T]"
                      name="magneticField">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="VectorF3D"/>
           </mal:field>
           <mal:field canBeNull="false"
@@ -1780,7 +1780,7 @@
               <mal:field canBeNull="true"
                          comment="The iqComponents field shall hold the in-phase and quadrature data from the Software-defined Radio unit."
                          name="iqComponents">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="IQComponents" service="SoftwareDefinedRadio" />
               </mal:field>
             </mal:publishNotify>
@@ -1802,7 +1802,7 @@
               <mal:field canBeNull="true"
                          comment="The  initialConfiguration field shall hold the configuration to be set right after the SDR is enabled."
                          name="initialConfiguration">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="SDRConfiguration" service="SoftwareDefinedRadio" />
               </mal:field>
               <mal:field canBeNull="true" comment=""
@@ -1833,7 +1833,7 @@
               <mal:field canBeNull="true"
                          comment="The configuration field holds the configuration of the SDR."
                          name="configuration">
-                <mal:type area="PF" list="false"
+                <mal:type area="Platform" list="false"
                           name="SDRConfiguration" service="SoftwareDefinedRadio" />
               </mal:field>
             </mal:submit>
@@ -1951,7 +1951,7 @@
             <mal:response comment="">
               <mal:field canBeNull="true"
                          comment="List of returned devices" name="devices">
-                <mal:type area="PF" list="true"
+                <mal:type area="Platform" list="true"
                           name="Device" service="PowerControl" />
               </mal:field>
             </mal:response>
@@ -1978,7 +1978,7 @@
               <mal:field canBeNull="true"
                          comment="List of devices to be controlled"
                          name="devices">
-                <mal:type area="PF" list="true"
+                <mal:type area="Platform" list="true"
                           name="Device" service="PowerControl" />
               </mal:field>
             </mal:request>
@@ -1987,7 +1987,7 @@
           <mal:errors>
             <mal:errorRef
               comment="At least one of the devices requested is not available for power control.">
-              <mal:type area="PF" list="false"
+              <mal:type area="Platform" list="false"
                         name="DEVICE_NOT_AVAILABLE" />
             </mal:errorRef>
           </mal:errors>
@@ -2016,7 +2016,7 @@
           </mal:field>
           <mal:field canBeNull="false" comment="Device type."
                      name="deviceType">
-            <mal:type area="PF" list="false"
+            <mal:type area="Platform" list="false"
                       name="DeviceType" service="PowerControl" />
           </mal:field>
         </mal:composite>

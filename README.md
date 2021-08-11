@@ -59,4 +59,4 @@ Prior to generating the stubs the script includes commands to:
 - Move the XSD files out of the `specs/xsd-ref/`
 - Rename the area name in `area105-v002-Platform.xml` from "Platform" to "PL".
 
-
+**Important:** When building the stubs with zproject/gsl the class elements in the generated `project.xml` file must be listed in the correct dependency order. Manual re-orderding is likely necessary so that these elements are listed in such way that the *platform* classes preceed the *softwaremanagement* classes, i.e.: com, common, mc, pf, and softwaremanagement.
