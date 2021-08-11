@@ -202,6 +202,11 @@ public class StubGenerator extends AbstractMojo
 
           gen.targetLanguages = targets.split(",");
         }
+        else if ("-f".equalsIgnoreCase(arg))
+        {
+          // force generation
+          gen.forceGeneration = true;
+        }
       }
     }
     else
@@ -222,6 +227,7 @@ public class StubGenerator extends AbstractMojo
       catch (MojoExecutionException ex)
       {
         System.err.println("ERROR: Exception thrown : " + ex.getMessage());
+        ex.printStackTrace();
       }
     }
   }
